@@ -12,7 +12,7 @@ var (
 	getThreadTimes   = kernel32.MustFindProc("GetThreadTimes")
 )
 
-func CurrentThread() (time.Duration, error) {
+func currentThread() (time.Duration, error) {
 	handle, _, err := getCurrentThread.Call()
 	if handle == 0 {
 		return 0, err
@@ -32,5 +32,5 @@ func CurrentThread() (time.Duration, error) {
 	if r == 0 {
 		return 0, err
 	}
-	return time.Duration(kernelTime.Nanoseconds()+userTime.Nanoseconds()), nil
+	return time.Duration(kernelTime.Nanoseconds() + userTime.Nanoseconds()), nil
 }

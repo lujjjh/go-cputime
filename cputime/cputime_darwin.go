@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func CurrentThread() (time.Duration, error) {
+func currentThread() (time.Duration, error) {
 	var ts C.timespec
 	_, err := C.clock_gettime(C.CLOCK_THREAD_CPUTIME_ID, &ts)
 	if err != nil {
